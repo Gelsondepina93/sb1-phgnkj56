@@ -1,0 +1,35 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" 
+      xmlns:maps="@nativescript/google-maps"
+      navigatingTo="onNavigatingTo">
+    
+    <GridLayout rows="*, auto">
+        <!-- Map View -->
+        <maps:MapView row="0" 
+                     id="map"
+                     latitude="{{ userLocation.latitude }}"
+                     longitude="{{ userLocation.longitude }}"
+                     zoom="15"
+                     mapReady="onMapReady"/>
+        
+        <!-- Bottom Panel -->
+        <StackLayout row="1" class="p-4 bg-white">
+            <Label text="Para onde você vai?" class="text-lg font-bold mb-2"/>
+            <TextField hint="Digite seu destino" class="p-2 border rounded-lg mb-4"/>
+            
+            <!-- Estimate Panel -->
+            <GridLayout columns="*, *" class="mb-4">
+                <StackLayout col="0" class="mr-2">
+                    <Label text="Tempo estimado" class="text-sm text-gray-500"/>
+                    <Label text="{{ estimatedTime }}" class="font-bold"/>
+                </StackLayout>
+                <StackLayout col="1">
+                    <Label text="Preço estimado" class="text-sm text-gray-500"/>
+                    <Label text="{{ estimatedPrice }}" class="font-bold"/>
+                </StackLayout>
+            </GridLayout>
+            
+            <Button text="Solicitar Táxi" tap="{{ requestTaxi }}" 
+                    class="bg-yellow-500 text-black font-bold p-4 rounded-lg"/>
+        </StackLayout>
+    </GridLayout>
+</Page>
